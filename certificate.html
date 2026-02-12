@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>3D Image Carousel</title>
+  <style>
+  body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #111;
+}
+
+.carousel-container {
+  perspective: 1200px;
+  width: 400px;
+}
+
+.carousel {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+
+.carousel img {
+  position: absolute;
+  width: 260px;
+  left: 70px;
+  top: 60px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+}
+
+/* Each image placed around a circle */
+.carousel img:nth-child(1) { transform: rotateY(0deg) translateZ(400px); }
+.carousel img:nth-child(2) { transform: rotateY(72deg) translateZ(400px); }
+.carousel img:nth-child(3) { transform: rotateY(144deg) translateZ(400px); }
+.carousel img:nth-child(4) { transform: rotateY(216deg) translateZ(400px); }
+.carousel img:nth-child(5) { transform: rotateY(288deg) translateZ(400px); }
+
+.controls {
+  margin-top: 20px;
+}
+
+button {
+  font-size: 22px;
+  padding: 8px 18px;
+  cursor: pointer;
+}
+.carousel {
+  cursor: grab;
+}
+  </style>
+</head>
+<body>
+
+<div class="carousel-container">
+  <div class="carousel">
+    <img src="Science.jpg">
+    <img src="Pr3.jpg">
+    <img src="eisee.jpg">
+    <img src="Computer-quiz.jpg">
+    <img src="Science-quiz.jpg">
+  </div>
+</div>
+
+<script>
+  let angle = 0;
+const carousel = document.querySelector(".carousel");
+const totalImages = carousel.children.length;
+const step = 360 / totalImages;
+
+let autoRotateInterval;
+
+// Manual rotate buttons still work
+function rotate(direction) {
+  angle += direction * step;
+  carousel.style.transform = `rotateY(${angle}deg)`;
+}
+
+// ▶ Start auto rotation
+function startAutoRotate() {
+  autoRotateInterval = setInterval(() => {
+    rotate(1);
+  }, 2500); // change speed here (ms)
+}
+
+// ⏸ Stop auto rotation
+function stopAutoRotate() {
+  clearInterval(autoRotateInterval);
+}
+
+// Pause on hover
+carousel.addEventListener("mouseenter", stopAutoRotate);
+carousel.addEventListener("mouseleave", startAutoRotate);
+
+// Start automatically on load
+startAutoRotate();
+</script>
+</body>
+</html>
