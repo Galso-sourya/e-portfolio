@@ -783,6 +783,139 @@ button:hover {
   min-width: 80px;
   transition: transform 0.2s ease;
 }
+/* ================================
+   CONTACT HOVER POPUP
+   ================================ */
+
+.contact-hover-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Keep the popup hidden initially */
+.contact-popup {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+
+  width: 310px;
+  padding: 16px;
+
+  background: rgba(15, 23, 42, 0.98);
+  border: 1px solid rgba(59, 130, 246, 0.55);
+  border-radius: 16px;
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.55),
+    0 0 25px rgba(59, 130, 246, 0.18);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px) scale(0.96);
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    visibility 0.25s ease;
+
+  z-index: 9999;
+}
+
+/* Small arrow */
+.contact-popup::before {
+  content: "";
+  position: absolute;
+
+  top: -7px;
+  right: 30px;
+
+  width: 14px;
+  height: 14px;
+
+  background: rgba(15, 23, 42, 0.98);
+
+  border-left: 1px solid rgba(59, 130, 246, 0.55);
+  border-top: 1px solid rgba(59, 130, 246, 0.55);
+
+  transform: rotate(45deg);
+}
+
+/* Show popup when Contact is hovered */
+.contact-hover-wrapper:hover .contact-popup,
+.contact-hover-wrapper:focus-within .contact-popup {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+/* Popup heading */
+.contact-popup-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+
+  padding-bottom: 10px;
+  margin-bottom: 8px;
+
+  border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+/* Individual contact item */
+.popup-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 10px 8px;
+  margin: 3px 0;
+
+  border-radius: 10px;
+
+  color: #e5e7eb;
+  text-decoration: none;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.popup-contact-item:hover {
+  background: rgba(59, 130, 246, 0.13);
+  transform: translateX(4px);
+}
+
+/* Icons */
+.popup-contact-item > i {
+  width: 28px;
+  text-align: center;
+  font-size: 1.15rem;
+  color: #60a5fa;
+}
+
+/* Text */
+.popup-contact-item span {
+  display: flex;
+  flex-direction: column;
+
+  font-size: 0.78rem;
+}
+
+.popup-contact-item small {
+  color: #9ca3af;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 2px;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .contact-popup {
+    width: 270px;
+    right: -10px;
+  }
+}
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
@@ -803,11 +936,51 @@ button:hover {
       <a href="#achievements" class="nav-link">Achievements</a>
       <a href="#certificates" class="nav-link">Certificates</a>
     </nav>
+<div class="contact-hover-wrapper">
+  <button class="nav-cta" onclick="document.getElementById('contact-section').scrollIntoView({behavior:'smooth'})">
+    <span>✉️</span> Contact
+  </button>
 
-    <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-      
-      <a href="#contact"><span>✉️</span> Contact</a>
-    </button>
+  <div class="contact-popup">
+    <div class="contact-popup-title">Contact Me</div>
+
+    <a href="mailto:banerjeesourya1@gmail.com" class="popup-contact-item">
+      <i class="fa-solid fa-envelope"></i>
+      <span>
+        <small>Email</small>
+        banerjeesourya1@gmail.com
+      </span>
+    </a>
+
+    <a href="tel:9903232233" class="popup-contact-item">
+      <i class="fa-solid fa-phone"></i>
+      <span>
+        <small>Mobile</small>
+        9903232233
+      </span>
+    </a>
+
+    <a href="https://www.linkedin.com/in/sourya-banerjee-6b7725357"
+       target="_blank"
+       class="popup-contact-item">
+      <i class="fa-brands fa-linkedin"></i>
+      <span>
+        <small>LinkedIn</small>
+        Sourya Banerjee
+      </span>
+    </a>
+
+    <a href="https://www.youtube.com/@hihello4209"
+       target="_blank"
+       class="popup-contact-item">
+      <i class="fa-brands fa-youtube"></i>
+      <span>
+        <small>YouTube</small>
+        @hihello4209
+      </span>
+    </a>
+  </div>
+</div>
   </div>
 </header>
 <main class="container"><!--it contains the footer section also-->
@@ -1032,123 +1205,6 @@ button:hover {
     </div>
   </section>
 
-  <!-- EDUCATION -->
-  <section class="section anchor-offset" id="education">
-      <h2 class="section-title">Education</h2>
-
-    <div class="section-grid">
-    <article class="lpu card">
-      <img src="logo.png" style="padding-right: 10px;width: 150px; height: 150px;"/>
-      <div>
-          <div class="card-header-row">
-            <div>
-              <div class="card-title">B.Ed.</div>
-              <div class="card-meta">
-                Lovely Professional University · 2025 – 2027
-              </div>
-            </div>
-          </div>
-          <p style="margin-top:0.35rem; color: #f2f2f2;">
-            Formal teacher training to understand pedagogy, classroom management and assessment.
-          </p>
-          </div>
-        </article>
-        <article class="lpu card">
-          <img src="hyd.png" style="padding-right: 10px; width: 150px; height: 150px;"/>
-          <div>
-          <div class="card-header-row">
-            <div>
-              <div class="card-title">M.Tech in Bioinformatics</div>
-              <div class="card-meta">
-                Hyderabad Central University · 2020 – 2022 · CGPA 7.48
-              </div>
-            </div>
-          </div>
-          <ul class="list">
-            <li>Recipient of AICTE Government Scholarship.</li>
-            <li>Dissertation work on Molecular Dynamics Simulation.</li>
-          </ul>
-          <a href="mtech.pdf" target="_blank">
-  <i class="fa-solid fa-file-pdf" style="font-size:40px; color:red;"></i>
-</a>
-</div>
-        </article>
-
-        <article class="lpu card">
-          <img src="hyd.png" style="padding-right: 10px; width: 150px; height: 150px;"/>
-          <div>
-          <div class="card-header-row">
-            <div>
-              <div class="card-title">M.Sc. in Plant Sciences</div>
-              <div class="card-meta">
-                Hyderabad Central University · 2018 – 2020 · CGPA 8.8
-              </div>
-            </div>
-          </div>
-          <ul class="list">
-            <li>Dissertation work on VIGS and Hydroponics.</li>
-            <li>Exposure to modern plant biology and experimental techniques.</li>
-          </ul>
-          <a href="msc.pdf" target="_blank" style="
-    display: inline-block;
-    padding: 10px;
-    background: #f2f2f2;
-    border-radius: 10px;
-">
-  <i class="fa-solid fa-file-pdf" style="font-size:40px; color:red;"></i>
-</a>
-</div>
-        </article>
-
-        <article class="lpu card">
-          <img src="cal.png" style="padding-right: 10px; width: 150px; height: 150px;
-          background-color: #9ca3af;"/>
-          <div style="padding-left: 10px;">
-          <div class="card-header-row">
-            <div>
-              <div class="card-title">B.Sc. in Botany</div>
-              <div class="card-meta">
-                Calcutta University · 2015 – 2018 · 70%
-              </div>
-            </div>
-          </div>
-          <p style="margin-top:0.35rem; color: #9ca3af;">
-            Built strong fundamentals in plant anatomy, physiology, taxonomy and ecology.
-          </p>
-          </div>
-          <button class="btn"><a href="graduation-certificate.pdf">click for certificate</a></button>
-        </article>
-      
-
-      
-       </section> 
-      </div>
-      <div class="school">
-        <article class="  card">
-          <div class="card-header-row">
-            <div>
-              <div class="card-title">Schooling</div>
-            </div>
-          </div>
-          <ul class="list">
-            <li>Hindu School · 2013 – 2015 · 84% (PCMB).</li><a href="hs.pdf" style="color: yellowgreen;">View Marksheet<i class="fa-solid fa-up-right-and-down-left-from-center fa-rotate-180 fa-2xl" style="color: #FFD43B;"></i></a>
-            <li>Baranagar Ramakrishna Mission · 2003 – 2013 · 89%.</li>
-          </ul>
-          <button id="openPdfBtn">Open PDF</button>
-
-<dialog id="pdfDialog">
-  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-    <h3 style="margin:0;">PDF Preview</h3>
-    <button id="closePdfBtn">X</button>
-  </div>
-
-  <!-- PDF inside iframe -->
-  <iframe src="secon.pdf" width="800" height="500"></iframe>
-</dialog>
-
-        </article>
-  </div>
-
   <!-- SKILLS -->
   <section class="section anchor-offset" id="skills">
       <h2 class="section-title">Skills</h2>
@@ -1316,29 +1372,125 @@ button:hover {
 <div class="soci">
     <img src="Blood-donation.jpg" alt="Blood Donation" class="soci-img">
     <img src="Social-work.jpg" alt="Social Work" class="soci-img">
+    <img src="organ.jpeg" alt="Social Work" class="soci-img">
 </div>
 </section>
-<section class="section anchor-offset" id="contact">
-      <h2 class="section-title">Contact</h2>
-      <div class="hero-contact" id="contact">
-        <div class="hero-contact-item">
-          <span class="hero-contact-label">Phone:</span>
-          <span>9903232233</span>
-        </div>
-        <div class="hero-contact-item">
-          <span class="hero-contact-label">Email:</span>
-          <a href="mailto:banerjeesourya1@gmail.com">banerjeesourya1@gmail.com</a>
-        </div>
-        <div class="hero-contact-item">
-          
-          <a href="https://www.linkedin.com/in/sourya-banerjee-6b7725357"><span class="hero-contact-label">LinkedIn</span></a>
-        </div>
-        <div class="hero-contact-item">
-          
-          <a href="https://www.youtube.com/@hihello4209"><span class="hero-contact-label">YouTube</span></a>
-        </div>
+  <!-- EDUCATION -->
+  <section class="section anchor-offset" id="education">
+      <h2 class="section-title">Education</h2>
+
+    <div class="section-grid">
+    <article class="lpu card">
+      <img src="logo.png" style="padding-right: 10px;width: 150px; height: 150px;"/>
+      <div>
+          <div class="card-header-row">
+            <div>
+              <div class="card-title">B.Ed.</div>
+              <div class="card-meta">
+                Lovely Professional University · 2025 – 2027
+              </div>
+            </div>
+          </div>
+          <p style="margin-top:0.35rem; color: #f2f2f2;">
+            Formal teacher training to understand pedagogy, classroom management and assessment.
+          </p>
+          </div>
+        </article>
+        <article class="lpu card">
+          <img src="hyd.png" style="padding-right: 10px; width: 150px; height: 150px;"/>
+          <div>
+          <div class="card-header-row">
+            <div>
+              <div class="card-title">M.Tech in Bioinformatics</div>
+              <div class="card-meta">
+                Hyderabad Central University · 2020 – 2022 · CGPA 7.48
+              </div>
+            </div>
+          </div>
+          <ul class="list">
+            <li>Recipient of AICTE Government Scholarship.</li>
+            <li>Dissertation work on Molecular Dynamics Simulation.</li>
+          </ul>
+          <a href="mtech.pdf" target="_blank">
+  <i class="fa-solid fa-file-pdf" style="font-size:40px; color:red;"></i>
+</a>
+</div>
+        </article>
+
+        <article class="lpu card">
+          <img src="hyd.png" style="padding-right: 10px; width: 150px; height: 150px;"/>
+          <div>
+          <div class="card-header-row">
+            <div>
+              <div class="card-title">M.Sc. in Plant Sciences</div>
+              <div class="card-meta">
+                Hyderabad Central University · 2018 – 2020 · CGPA 8.8
+              </div>
+            </div>
+          </div>
+          <ul class="list">
+            <li>Dissertation work on VIGS and Hydroponics.</li>
+            <li>Exposure to modern plant biology and experimental techniques.</li>
+          </ul>
+          <a href="msc.pdf" target="_blank" style="
+    display: inline-block;
+    padding: 10px;
+    background: #f2f2f2;
+    border-radius: 10px;
+">
+  <i class="fa-solid fa-file-pdf" style="font-size:40px; color:red;"></i>
+</a>
+</div>
+        </article>
+
+        <article class="lpu card">
+          <img src="cal.png" style="padding-right: 10px; width: 150px; height: 150px;
+          background-color: #9ca3af;"/>
+          <div style="padding-left: 10px;">
+          <div class="card-header-row">
+            <div>
+              <div class="card-title">B.Sc. in Botany</div>
+              <div class="card-meta">
+                Calcutta University · 2015 – 2018 · 70%
+              </div>
+            </div>
+          </div>
+          <p style="margin-top:0.35rem; color: #9ca3af;">
+            Built strong fundamentals in plant anatomy, physiology, taxonomy and ecology.
+          </p>
+          </div>
+          <button class="btn"><a href="graduation-certificate.pdf">click for certificate</a></button>
+        </article>
+      
+
+      
+       </section> 
       </div>
-      </section>
+      <div class="school">
+        <article class="  card">
+          <div class="card-header-row">
+            <div>
+              <div class="card-title">Schooling</div>
+            </div>
+          </div>
+          <ul class="list">
+            <li>Hindu School · 2013 – 2015 · 84% (PCMB).</li><a href="hs.pdf" style="color: yellowgreen;">View Marksheet<i class="fa-solid fa-up-right-and-down-left-from-center fa-rotate-180 fa-2xl" style="color: #FFD43B;"></i></a>
+            <li>Baranagar Ramakrishna Mission · 2003 – 2013 · 89%.</li>
+          </ul>
+          <button id="openPdfBtn">Open PDF</button>
+
+<dialog id="pdfDialog">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+    <h3 style="margin:0;">PDF Preview</h3>
+    <button id="closePdfBtn">X</button>
+  </div>
+
+  <!-- PDF inside iframe -->
+  <iframe src="secon.pdf" width="800" height="500"></iframe>
+</dialog>
+
+        </article>
+  </div>
       <div class="dialog">
   <h3>Rate Your Experience</h3>
 
